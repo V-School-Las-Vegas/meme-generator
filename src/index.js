@@ -35,7 +35,7 @@ class RootComponent extends Component {
         <>
             {this.state.isLoading
                 ? <h1 id='loading'>Loading...</h1>
-                : this.state.memes.map((meme, i) => <MemeCard key={i} x={meme} />)
+                : this.state.memes.map((meme, i) => <MemeCard key={i} memeObj={meme} />)
             }
         </>
 }
