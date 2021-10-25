@@ -30,15 +30,15 @@ class MemeCard extends Component {
                     </div>
 
                     <div>  
-                        <button>Refresh Meme</button>
+                        <button onClick={this.props.handleRejectClick}>Refresh Meme</button>
                     </div>
 
                     <div className="submit-btn">
-                        <button onClick={this.handleClicked}>Submit</button>
+                        <button onClick={this.props.handleSubmitClick}>Submit</button>
                     </div>
 
                     <div className="cancel-btn">
-                        <button onClick={this.handleClicked}>cancel</button>
+                        <button onClick={this.props.handleCancelClick}>cancel</button>
                     </div>
 
 </div>
