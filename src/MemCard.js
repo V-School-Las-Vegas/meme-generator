@@ -13,7 +13,7 @@ class MemeCard extends Component {
         return(
             <div className="meme-card">
                 <div className="image">
-                    <img src={this.props.x.url} alt={this.props.x.name}/>
+                    <img src={this.props.y.url} alt={this.props.y.name}/>
                 </div>
 
                     <div className="text-form">
