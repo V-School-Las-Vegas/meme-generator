@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import MemeCard from './MemCard'
 // import './index.css';
 
+// Added comment
 
 const axios = require("axios");
 
