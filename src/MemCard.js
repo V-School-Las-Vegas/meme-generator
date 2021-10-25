@@ -3,17 +3,48 @@ import React, { Component } from 'react';
 
 class MemeCard extends Component {
 
-    render = () => <div>
-        {this.props.x.name}<br/>
-        {this.props.x.id}<br/>
-        {this.props.x.url}<br/>
-        {this.props.x.width}<br/>
-        {this.props.x.height}<br/>
-        {this.props.x.box_count}<br/>
-        {this.props.x.topText}<br/>
-        {this.props.x.bottomText}<br/>
-        {String(this.props.x.added)}<hr/>
-    </div>
+
+
+    handleClicked(){
+        
+    }
+
+    render(props){
+        return(
+            <div className="meme-card">
+                <div className="image">
+                    <img src={this.props.x.url} alt={this.props.x.name}/>
+                </div>
+
+                    <div className="text-form">
+                        <form>
+                            <input type="text"
+                                name="top-text"
+                                placeholder="Top text"
+                            />
+                            <input type="text"
+                                name="bottom-text"
+                                placeholder="Bottom text"
+                            />
+                        </form>
+                    </div>
+
+                    <div>  
+                        <button>Refresh Meme</button>
+                    </div>
+
+                    <div className="submit-btn">
+                        <button onClick={this.handleClicked}>Submit</button>
+                    </div>
+
+                    <div className="cancel-btn">
+                        <button onClick={this.handleClicked}>cancel</button>
+                    </div>
+
+</div>
+        )
+    }   
+
 
 }
 
