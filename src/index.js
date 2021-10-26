@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import MemeList from './MemeList';
-import MemeCard from './MemCard';
+import MemeCard from './GeoffMemeCard';
 import AddNewMeme from './AddNewMeme';
 
 const axios = require("axios");
 
 class RootComponent extends Component {
     state = {
-        isLoading: true,
-        showAddNemMeme: false,
-        showMemeList: false,
-        showNemCard: false,
+        mode: 'Loading',
         memes: []
     };
 
@@ -28,8 +25,7 @@ class RootComponent extends Component {
                         meme.added = false;
                     });
                     this.setState({
-                        isLoading: false,
-                        showAddNemMeme: true,
+                        mode: 'AddNewMeme',
                         memes: memes
                     })
                 })
@@ -44,68 +40,45 @@ class RootComponent extends Component {
     }
 
     handleSubmitClick = (id) => {
-        console.log('handleSubmitClick ');
         const tempArr = JSON.parse(JSON.stringify(this.state.memes));
         tempArr[id].added = true;
         this.setState({
-            showAddNemMeme: false,
-            showMemeList: true,
-            showNemCard: false,
+            mode: 'MemeList',
             memes: tempArr
         });
     }
 
-    handleCancelClick = () => {
-        this.setState({
-            showAddNemMeme: false,
-            showMemeList: true,
-            showNemCard: false
-        });
-    }
+    handleCancelClick = () => this.setState({ mode: 'MemeList' });
 
-    test1 = () => this.setState({
-        isLoading: false,
-        showAddNemMeme: true,
-        showMemeList: false,
-        showNemCard: false
-    })
+    test1 = () => this.setState({ mode: 'AddNewMeme' })
 
-    test2 = () =>
-        this.setState({
-            isLoading: false,
-            showAddNemMeme: false,
-            showMemeList: true,
-            showNemCard: false
-        })
+    test2 = () => this.setState({ mode: 'MemeList' })
 
-    test3 = () => this.setState({
-        isLoading: false,
-        showAddNemMeme: false,
-        showMemeList: false,
-        showNemCard: true
-    })
+    test3 = () => this.setState({ mode: 'MemeCard' })
 
     render = () =>
         <>
-            {this.state.isLoading ? <h1>Loading...</h1> : ''}
+            <button onClick={this.test1}>Add New Meme</button>
+            <button onClick={this.test2}>Show Meme List</button>
+            <button onClick={this.test3}>Show Meme Card</button>
 
-            {this.state.showAddNemMeme ? <AddNewMeme
+            {this.state.mode === 'Loading' ? <h1>Loading...</h1> : ''}
+
+            {this.state.mode === 'AddNewMeme' ? <AddNewMeme
                 memes={this.state.memes}
                 handleChange={this.handleChange}
                 handleSubmitClick={this.handleSubmitClick}
                 handleCancelClick={this.handleCancelClick}
             /> : ''}
 
-            {this.state.showMemeList ? <MemeList
+            {this.state.mode === 'MemeList' ? <MemeList
                 memes={this.state.memes}
                 handleChange={this.handleChange}
                 handleSubmitClick={this.handleSubmitClick}
             /> : ''}
 
-            {this.state.showNemCard ? <h1>showNemCard...</h1> : ''}
-            <button onClick={this.test1}>Add New Meme</button>
-            <button onClick={this.test2}>Show Meme List</button>
-            <button onClick={this.test3}>Show Meme Card</button>
+            {this.state.mode === 'MemeCard' ? <h1>showNemCard...</h1> : ''}
+
         </>
 }
 

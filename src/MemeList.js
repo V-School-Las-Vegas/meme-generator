@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import MemeCard from './MemCard';
+import MemeCard from './GeoffMemeCard';
 
 
 class MemeList extends Component {
