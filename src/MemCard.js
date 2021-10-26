@@ -13,7 +13,7 @@ class MemeCard extends Component {
         return(
             <div className="meme-card">
                 <div className="image">
-                    <img src={this.props.x.url} alt={this.props.x.name}/>
+                    <img src={this.props.memeObj.url} alt={this.props.memeObj.name}/>
                 </div>
 
                     <div className="text-form">
@@ -30,15 +30,15 @@ class MemeCard extends Component {
                     </div>
 
                     <div>  
-                        <button>Refresh Meme</button>
+                        <button onClick={this.props.handleRejectClick}>Refresh Meme</button>
                     </div>
 
                     <div className="submit-btn">
-                        <button onClick={this.handleClicked}>Submit</button>
+                        <button onClick={this.props.handleSubmitClick}>Submit</button>
                     </div>
 
                     <div className="cancel-btn">
-                        <button onClick={this.handleClicked}>cancel</button>
+                        <button onClick={this.props.handleCancelClick}>cancel</button>
                     </div>
 
 </div>
