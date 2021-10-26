@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import MemeCard from './MemeCard'
 import MemeList from './MemeList';
-import MemeCard from './GeoffMemeCard';
+import GeoffMemeCard from './GeoffMemeCard';
 import AddNewMeme from './AddNewMeme';
 
 const axios = require("axios");
