@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MemeCard from './MemeCard'
 import MemeList from './MemeList';
-import GeoffMemeCard from './GeoffMemeCard';
 import AddNewMeme from './AddNewMeme';
 
 const axios = require("axios");
@@ -54,13 +53,10 @@ class RootComponent extends Component {
 
     test2 = () => this.setState({ mode: 'MemeList' })
 
-    test3 = () => this.setState({ mode: 'MemeCard' })
-
     render = () =>
         <>
             <button onClick={this.test1}>Add New Meme</button>
             <button onClick={this.test2}>Show Meme List</button>
-            <button onClick={this.test3}>Show Meme Card</button>
 
             {this.state.mode === 'Loading' ? <h1>Loading...</h1> : ''}
 
@@ -76,8 +72,6 @@ class RootComponent extends Component {
                 handleChange={this.handleChange}
                 handleSubmitClick={this.handleSubmitClick}
             /> : ''}
-
-            {this.state.mode === 'MemeCard' ? <h1>showNemCard...</h1> : ''}
 
         </>
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import MemeCard from './GeoffMemeCard';
+import ThumbNail from './ThumbNail';
 
 
 class MemeList extends Component {
@@ -10,7 +10,7 @@ class MemeList extends Component {
         <h1>Meme List</h1>
         {this.props.memes
         .filter(meme => meme.added)
-        .map((meme, i) => <MemeCard
+        .map((meme, i) => <ThumbNail
             key={i}
             id={i}
             memeObj={meme}

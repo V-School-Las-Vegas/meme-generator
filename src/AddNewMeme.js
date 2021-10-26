@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./MemeCard.css"
 
 class AddNewMeme extends Component {
     state = {
@@ -23,16 +24,16 @@ class AddNewMeme extends Component {
                 <button onClick={this.handleNextMemeClick}>Next Meme</button>
             </div>
 
-            <div className="submit-btn">
-                <button onClick={() => this.props.handleSubmitClick(this.state.currMemeNdx)}>Submit</button>
+            <div className="submit-btn-div">
+                <button className="submit-btn" onClick={() => this.props.handleSubmitClick(this.state.currMemeNdx)}>Submit</button>
             </div>
 
-            <div className="cancel-btn">
-                <button onClick={this.props.handleCancelClick}>Cancel</button>
+            <div className="cancel-btn-div">
+                <button className="cancel-btn" onClick={this.props.handleCancelClick}>Cancel</button>
             </div>
 
-            <div className="image">
-                <img src={this.props.memes[this.state.currMemeNdx].url} />
+            <div className="image-div">
+                <img className="image" src={this.props.memes[this.state.currMemeNdx].url} />
             </div>
 
             <div className="text-form">
