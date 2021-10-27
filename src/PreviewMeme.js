@@ -27,8 +27,9 @@ class PreviewMeme extends Component {
             />
         </form>
 
-        <button onClick={() => this.props.handleAddClick(this.props.memeObj)}>Add To Meme List</button>
-        <button onClick={this.props.handleCancelClick}>Cancel</button>
+        <button onClick={this.props.handleUpdateMemeClick}>Update Current Meme</button><br/>
+        <button onClick={() => this.props.handleAddMemeClick(this.props.memeObj)}>Add To List as New Meme</button><br/>
+        <button onClick={this.props.handleMemeListClick}>Goto My Memes</button>
 
     </div>
 

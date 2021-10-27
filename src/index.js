@@ -39,18 +39,32 @@ class RootComponent extends Component {
         }, 1000)
     }
 
-    handleChangePreview = (meme, { target: { name, value } }) => {
+    handleChangeCurrMemePreview = (meme, { target: { name, value } }) => {
         this.setState({ currMeme: { ...meme, [name]: value } });
     }
 
-    handleAddPreview = (meme) => {
+    handleUpdateMemePreview = () => {
+        const tempArr = JSON.parse(JSON.stringify(this.state.memesList));
+        tempArr[this.state.currMeme.id] = this.state.currMeme;
+        this.setState({
+            memesList: tempArr
+        });
+    }
+
+    handleAddMemePreview = (meme) => {
         const tempArr = JSON.parse(JSON.stringify(this.state.memesList));
         tempArr.push(meme);
         tempArr.forEach((meme, i) => meme.id = i);
-        this.setState({ memesList: tempArr });
+        this.setState({
+            memesList: tempArr,
+            currMeme: { ...meme, topText: '', bottomText: '' }
+        });
     }
 
-    handleCancelPreview = () => this.setState({ mode: 'MemeList' });
+    handleMemeListPreview = () => this.setState({
+        mode: 'MemeListPreview',
+        currMeme: {}
+    });
 
     handleChange = (id, { target: { name, value } }) => {
         const tempArr = JSON.parse(JSON.stringify(this.state.memes));
@@ -96,14 +110,27 @@ class RootComponent extends Component {
 
             {this.state.mode === 'PreviewMeme' ? <PreviewMeme
                 memeObj={this.state.currMeme}
-                handleChange={this.handleChangePreview}
-                handleAddClick={this.handleAddPreview}
-                handleCancelClick={this.handleCancelPreview}
+                handleChange={this.handleChangeCurrMemePreview}
+                handleUpdateMemeClick={this.handleUpdateMemePreview}
+                handleAddMemeClick={this.handleAddMemePreview}
+                handleMemeListClick={this.handleMemeListPreview}
             /> : ''}
 
             {this.state.mode === 'MemeList' ? <>
                 <h1>Meme List</h1>
                 {this.state.memes
+                    .filter(meme => meme.added)
+                    .map((meme, i) => <GeoffThumbNail
+                        key={i}
+                        id={i}
+                        memeObj={meme}
+                        handlePreviewClick={this.handlePreviewClick}
+                    />)}
+            </> : ''}
+
+            {this.state.mode === 'MemeListPreview' ? <>
+                <h1>Meme List</h1>
+                {this.state.memesList
                     .filter(meme => meme.added)
                     .map((meme, i) => <GeoffThumbNail
                         key={i}
