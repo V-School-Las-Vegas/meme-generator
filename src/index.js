@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import MemeCard from './MemeCard'
-import MemeList from './MemeList';
+
+// import MemeCard from './MemeCard'
 import AddNewMeme from './AddNewMeme';
+import PreviewMeme from './PreviewMeme';
+// import ThumbNail from './ThumbNail';
+import GeoffThumbNail from './GeoffThumbNail';
 
 const axios = require("axios");
 
 class RootComponent extends Component {
     state = {
         mode: 'Loading',
-        memes: []
+        currMeme: {},
+        memes: [],
+        memesList: []
     };
 
     componentDidMount() {
@@ -18,7 +23,9 @@ class RootComponent extends Component {
                 .get('https://api.imgflip.com/get_memes')
                 .then(res => {
                     const memes = JSON.parse(JSON.stringify(res.data.data.memes));
-                    memes.forEach(meme => {
+                    memes.forEach((meme, i) => {
+                        meme.key = meme.id;
+                        meme.id = i;
                         meme.topText = 'test top text';
                         meme.bottomText = 'test bottom text';
                         meme.added = false;
@@ -31,6 +38,19 @@ class RootComponent extends Component {
                 .catch(err => alert(err))
         }, 1000)
     }
+
+    handleChangePreview = (meme, { target: { name, value } }) => {
+        this.setState({ currMeme: { ...meme, [name]: value } });
+    }
+
+    handleAddPreview = (meme) => {
+        const tempArr = JSON.parse(JSON.stringify(this.state.memesList));
+        tempArr.push(meme);
+        tempArr.forEach((meme, i) => meme.id = i);
+        this.setState({ memesList: tempArr });
+    }
+
+    handleCancelPreview = () => this.setState({ mode: 'MemeList' });
 
     handleChange = (id, { target: { name, value } }) => {
         const tempArr = JSON.parse(JSON.stringify(this.state.memes));
@@ -48,6 +68,13 @@ class RootComponent extends Component {
     }
 
     handleCancelClick = () => this.setState({ mode: 'MemeList' });
+
+    handlePreviewClick = (meme) => {
+        this.setState({
+            currMeme: meme,
+            mode: 'PreviewMeme'
+        });
+    };
 
     test1 = () => this.setState({ mode: 'AddNewMeme' })
 
@@ -67,11 +94,24 @@ class RootComponent extends Component {
                 handleCancelClick={this.handleCancelClick}
             /> : ''}
 
-            {this.state.mode === 'MemeList' ? <MemeList
-                memes={this.state.memes}
-                handleChange={this.handleChange}
-                handleSubmitClick={this.handleSubmitClick}
+            {this.state.mode === 'PreviewMeme' ? <PreviewMeme
+                memeObj={this.state.currMeme}
+                handleChange={this.handleChangePreview}
+                handleAddClick={this.handleAddPreview}
+                handleCancelClick={this.handleCancelPreview}
             /> : ''}
+
+            {this.state.mode === 'MemeList' ? <>
+                <h1>Meme List</h1>
+                {this.state.memes
+                    .filter(meme => meme.added)
+                    .map((meme, i) => <GeoffThumbNail
+                        key={i}
+                        id={i}
+                        memeObj={meme}
+                        handlePreviewClick={this.handlePreviewClick}
+                    />)}
+            </> : ''}
 
         </>
 }
