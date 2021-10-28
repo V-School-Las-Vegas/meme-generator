@@ -44,32 +44,28 @@ class EditViewMeme extends Component {
     </div>
 
     <div className="image-div">
-      <img
-        className="image"
-        src={this.state.currMeme.url}
-        alt={this.state.currMeme.name}
-      />
-    </div>
-
-    <div className="text-form">
-      <form>
-        <input
+    <input  className="top-text-edit"
           type="text"
           name="topText"
           placeholder="Top text"
           value={this.state.currMeme.topText}
           onChange={event => this.handleChange(event)}
         />
-        <br />
-        <input
+
+      <img
+        className="image-edit"
+        src={this.state.currMeme.url}
+        alt={this.state.currMeme.name}
+      />
+              <input className="bottom-text-edit"
           type="text"
           name="bottomText"
           placeholder="Bottom text"
           value={this.state.currMeme.bottomText}
           onChange={event => this.handleChange(event)}
         />
-      </form>
     </div>
+
 
 
     <div className="refresh-btn-div">

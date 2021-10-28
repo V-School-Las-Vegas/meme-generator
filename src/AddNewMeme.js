@@ -33,7 +33,7 @@ class AddNewMeme extends Component {
 
   render = () => <div className="add-meme-card">
 
-    <div className="meme-header">
+    <div className="add-meme-header">
       <h1>Add New Meme</h1>
       <h3>Meme Pool #{this.state.currMeme.id}: {this.state.currMeme.name}</h3>
     </div>
