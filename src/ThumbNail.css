@@ -1,0 +1,221 @@
+.meme-thumbnail {
+  height: 200px;
+  width: 70%;
+  border-style: solid;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-rows:repeat(3, 1fr);
+  background-color: rgba(170, 165, 165, 0.685);
+  margin-bottom: 15px;
+}
+
+.thumbnail-header {
+  align-self: start;
+  grid-row: 1/2;
+  grid-column: 1/8;
+  border-style: solid;
+  width: auto;
+  background-color: rgb(191, 196, 191);
+  border-color: rgb(163, 180, 163);
+}
+
+.thumbnail-image-div {
+  grid-row: 2/5;
+  border-style: double;
+  width: 100px;
+  height: 110px;
+}
+
+.thumbnail-image {
+  align-self: start;
+  float: left;
+  width: 100px;
+  height: 110px;
+  object-fit: cover;
+}
+
+.thumbnail-text-display {
+  display: flex;
+  flex-wrap: wrap;
+  width: 140px;
+  justify-content: space-around;
+  grid-column: 2/3;
+  grid-row: 2/5;
+  border-style: hidden;
+  align-self: center;
+}
+
+.top-text {
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.bottom-text {
+  flex-direction: column;
+  align-self: flex-end;
+}
+
+
+/*------- DELETE BUTTON ------------------------  */
+.delete-btn-div {
+  grid-column: 6/7;
+  grid-row: 3/4;
+  position: relative;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.delete-btn {
+  display: block;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+.delete-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.delete-btn:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #ff003b;
+  transition: all .35s;
+}
+
+.delete-btn:hover{
+  color: #fff;
+}
+
+.delete-btn:hover:after{
+  width: 100%;
+}
+
+/* ----------- PREVIEW BUTTON --------------------------------  */
+
+.preview-btn-div {
+  grid-column: 4/5;
+  grid-row: 3/4;
+  position: relative;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.preview-btn {
+  display: block;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+.preview-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.preview-btn:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #bfd309;
+  transition: all .35s;
+}
+
+.preview-btn:hover{
+  color: rgba(255, 7, 7, 0.575);
+}
+
+.preview-btn:hover:after{
+  width: 100%;
+}
+
+/* ------------------- EDIT BUTTON --------------------------------------------*/
+.edit-btn-div {
+  grid-column: 5/6;
+  grid-row: 3/4;
+  position: relative;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.edit-btn {
+  display: block;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+.edit-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.edit-btn:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #bfd309;
+  transition: all .35s;
+}
+
+.edit-btn:hover{
+  color: rgba(255, 7, 7, 0.575);
+}
+
+.edit-btn:hover:after{
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

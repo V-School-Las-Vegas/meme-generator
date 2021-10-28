@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./MemeCard.css"
+import "./MemeCard.css";
 
 class AddNewMeme extends Component {
     state = {
@@ -20,8 +20,8 @@ class AddNewMeme extends Component {
         <div className="meme-card">
             <h1>Add New Meme</h1>
 
-            <div>
-                <button onClick={this.handleNextMemeClick}>Next Meme</button>
+            <div className="refresh-btn-div">
+                <button className="refresh-btn" onClick={this.handleNextMemeClick}>Next Meme</button>
             </div>
 
             <div className="submit-btn-div">

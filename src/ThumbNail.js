@@ -1,67 +1,59 @@
 import React, { Component } from "react";
-import "./MemeCard.css";
+import "./ThumbNail.css";
+
 // import ReactDOM from 'react-dom';
 
 class ThumbNail extends Component {
   render(props) {
     return (
-      <div className="meme-card">
-        <p>this is the thumbnail</p>
-        <div className="meme-header">
+      <div className="meme-thumbnail">
+        
+        <div className="thumbnail-header">
           <h1>
             {this.props.memeObj.name} / {this.props.memeObj.id}
           </h1>
         </div>
-        <div className="image-div">
+        <div className="thumbnail-image-div">
           <img
-            className="image"
+            className="thumbnail-image"
             src={this.props.memeObj.url}
             alt={this.props.memeObj.name}
           />
         </div>
 
-        <div className="text-form">
-          <form>
-            <input
-              type="text"
-              name="topText"
-              placeholder="Top text"
-              value={this.props.memeObj.topText}
-              onChange={(event) => this.props.handleChange(this.props.id, event)}
-            />
-            <input
-              type="text"
-              name="bottomText"
-              placeholder="Bottom text"
-              value={this.props.memeObj.bottomText}
-              onChange={(event) =>
-                this.props.handleChange(this.props.id, event)
-              }
-            />
-          </form>
+        <div className="thumbnail-text-display">
+          <div className="top-text">
+            <h2>top text</h2>
+          </div>
+
+          <br/>
+
+          <div className="bottom-text">
+            <h2>bottom text</h2>
+          </div>
         </div>
 
-        <div className="refresh-btn-div">
+        <div className="preview-btn-div">
           <button
-            className="refresh-btn"
+            className="preview-btn"
             onClick={this.props.handleRejectClick}
           >
-            Refresh Meme
+            <span>preview</span>
           </button>
         </div>
 
-        <div className="submit-btn-div">
+        <div className="edit-btn-div">
           <button
-            className="submit-btn"
+            className="edit-btn"
             onClick={() => this.props.handleSubmitClick(this.props.id)}
           >
-            Submit
+            <span>Edit</span>
           </button>
         </div>
 
-        <div className="cancel-btn-div">
-          <button className="cancel-btn" onClick={this.props.handleCancelClick}>
-            cancel
+        <div className="delete-btn-div">
+          <button className="delete-btn" onClick={this.props.handleCancelClick}>
+            <span>Delete</span>
           </button>
         </div>
       </div>
