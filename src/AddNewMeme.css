@@ -28,6 +28,7 @@
   grid-column: 1/4;
   border-style: hidden;
   height: 590px;
+  margin-left: 15px;
 }
 
 .image-add {
@@ -35,14 +36,14 @@
   grid-column: 1/7;
   align-self: start;
   float: left;
-  width: 650px;
+  width: 730px;
   height: 625px;
   object-fit: cover;
   border-style: solid;
 }
 
 .top-text-add {
-  width: 110%;
+  width: 125%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -52,7 +53,7 @@
 }
 
 .bottom-text-add {
-  width: 110%;
+  width: 125%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -146,13 +147,44 @@
   }
 /* ----------------------------------------------------*/
 
+.add-new-meme-btn {
+  display: block;
+  width: 170px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
 
-.text-form {
-  display: flex;
-  border-style: double;
-  grid-row: 3/4;
-  grid-column: 4/5;
+.add-new-meme-btn:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #bfd309;
+  transition: all .35s;
+}
 
+.add-new-meme-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.add-new-meme-btn:hover{
+  color: rgba(255, 7, 7, 0.575);
+}
+
+.add-new-meme-btn:hover:after{
+  width: 100%;
 }
 
 

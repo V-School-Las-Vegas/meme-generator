@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import "./AddNewMeme.css";
 import AddNewMeme from './AddNewMeme';
 import EditViewMeme from './EditViewMeme';
 import ThumbNail from './ThumbNail.js';
@@ -88,7 +88,7 @@ class RootComponent extends Component {
 
             {this.state.mode === 'MemeList' ? <>
                 <h1>Meme List</h1>
-                <button onClick={this.renderAddNewMeme}>Add New Meme</button>
+                <button className="add-new-meme-btn" onClick={this.renderAddNewMeme}><span>Add New Meme</span></button>
                 {this.state.memeList
                     .map((meme, i) => <ThumbNail
                         key={i}
