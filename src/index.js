@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import MemeCard from './MemeCard'
-import MemeList from './MemeList';
+
 import AddNewMeme from './AddNewMeme';
+import EditViewMeme from './EditViewMeme';
+import GeoffThumbNail from './GeoffThumbNail';
+import ThumbNail from './ThumbNail.js';
 
 const axios = require("axios");
 
 class RootComponent extends Component {
     state = {
         mode: 'Loading',
-        memes: []
+        memePool: [],
+        memeList: [],
+        initMemeListId: 0
     };
 
     componentDidMount() {
@@ -17,61 +21,84 @@ class RootComponent extends Component {
             axios
                 .get('https://api.imgflip.com/get_memes')
                 .then(res => {
-                    const memes = JSON.parse(JSON.stringify(res.data.data.memes));
-                    memes.forEach(meme => {
-                        meme.topText = 'test top text';
-                        meme.bottomText = 'test bottom text';
-                        meme.added = false;
+                    const memePoolFromApi = JSON.parse(JSON.stringify(res.data.data.memes));
+                    memePoolFromApi.forEach((meme, i) => {
+                        meme.key = meme.id;
+                        meme.id = i;
+                        meme.topText = '';
+                        meme.bottomText = '';
                     });
                     this.setState({
                         mode: 'AddNewMeme',
-                        memes: memes
+                        memePool: memePoolFromApi
                     })
                 })
                 .catch(err => alert(err))
         }, 1000)
     }
 
-    handleChange = (id, { target: { name, value } }) => {
-        const tempArr = JSON.parse(JSON.stringify(this.state.memes));
-        tempArr[id] = { ...tempArr[id], [name]: value };
-        this.setState({ memes: tempArr });
+    addMemeToList = (meme) => {
+        const tempArr = JSON.parse(JSON.stringify(this.state.memeList));
+        tempArr.push(JSON.parse(JSON.stringify(meme)));
+        tempArr.forEach((meme, i) => meme.id = i);
+        this.setState({ memeList: tempArr });
     }
 
-    handleSubmitClick = (id) => {
-        const tempArr = JSON.parse(JSON.stringify(this.state.memes));
-        tempArr[id].added = true;
-        this.setState({
-            mode: 'MemeList',
-            memes: tempArr
-        });
+    renderMemeList = () => this.setState({ mode: 'MemeList' });
+
+    renderAddNewMeme = () => this.setState({ mode: 'AddNewMeme' });
+
+    renderEditViewMeme = (meme) => this.setState({
+        initMemeListId: meme.id,
+        mode: 'EditViewMeme'
+    });
+
+    updateListMeme = (meme) => {
+        const tempArr = JSON.parse(JSON.stringify(this.state.memeList));
+        tempArr[meme.id] = meme;
+        this.setState({ memeList: tempArr });
     }
 
-    handleCancelClick = () => this.setState({ mode: 'MemeList' });
-
-    test1 = () => this.setState({ mode: 'AddNewMeme' })
-
-    test2 = () => this.setState({ mode: 'MemeList' })
+    removeMemeFromList = (id) => {
+        const tempArr = JSON.parse(JSON.stringify(this.state.memeList));
+        const remNdx = tempArr.findIndex(meme => meme.id === id);
+        tempArr.splice(remNdx, 1);
+        // Not sure I want to renumber the list...?
+        // tempArr.forEach((meme, i) => meme.id = i);
+        this.setState({ memeList: tempArr });
+    }
 
     render = () =>
         <>
-            <button onClick={this.test1}>Add New Meme</button>
-            <button onClick={this.test2}>Show Meme List</button>
-
             {this.state.mode === 'Loading' ? <h1>Loading...</h1> : ''}
 
             {this.state.mode === 'AddNewMeme' ? <AddNewMeme
-                memes={this.state.memes}
-                handleChange={this.handleChange}
-                handleSubmitClick={this.handleSubmitClick}
-                handleCancelClick={this.handleCancelClick}
+                memePool={this.state.memePool}
+                addMemeToList={this.addMemeToList}
+                renderMemeList={this.renderMemeList}
             /> : ''}
 
-            {this.state.mode === 'MemeList' ? <MemeList
-                memes={this.state.memes}
-                handleChange={this.handleChange}
-                handleSubmitClick={this.handleSubmitClick}
+            {this.state.mode === 'EditViewMeme' ? <EditViewMeme
+                initMemeListId={this.state.initMemeListId}
+                memeList={this.state.memeList}
+                renderMemeList={this.renderMemeList}
+                updateListMeme={this.updateListMeme}
+                removeMemeFromList={this.removeMemeFromList}
+                renderMemeList={this.renderMemeList}
             /> : ''}
+
+            {this.state.mode === 'MemeList' ? <>
+                <h1>Meme List</h1>
+                <button onClick={this.renderAddNewMeme}>Add New Meme</button>
+                {this.state.memeList
+                    .map((meme, i) => <ThumbNail
+                        key={i}
+                        id={i}
+                        memeObj={meme}
+                        renderEditViewMeme={this.renderEditViewMeme}
+                        removeMemeFromList={this.removeMemeFromList}
+                    />)}
+            </> : ''}
 
         </>
 }

@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import "./AddNewMeme.css";
+import "./EditViewMeme.css";
 
-class AddNewMeme extends Component {
+class EditViewMeme extends Component {
 
   state = {
-    currMemePoolNdx: 0,
-    currMeme: this.props.memePool[0]
+    currmemeListNdx: this.props.initMemeListId,
+    currMeme: this.props.memeList[this.props.initMemeListId]
   };
 
-  prevMemePool = () => {
-    let nextId = Math.max(this.state.currMemePoolNdx - 1, 0);
+  nextmemeList = () => {
+    let nextId = Math.min(this.state.currmemeListNdx + 1, this.props.memeList.length - 1);
     this.setState({
-      currMemePoolNdx: nextId,
-      currMeme: this.props.memePool[nextId]
+      currmemeListNdx: nextId,
+      currMeme: this.props.memeList[nextId]
     });
   }
 
-  nextMemePool = () => {
-    let nextId = Math.min(this.state.currMemePoolNdx + 1, this.props.memePool.length - 1);
+  prevmemeList = () => {
+    let nextId = Math.max(this.state.currmemeListNdx - 1, 0);
     this.setState({
-      currMemePoolNdx: nextId,
-      currMeme: this.props.memePool[nextId]
+      currmemeListNdx: nextId,
+      currMeme: this.props.memeList[nextId]
     });
   }
 
@@ -31,11 +31,16 @@ class AddNewMeme extends Component {
     this.setState({ currMeme: { ...this.state.currMeme, topText: '', bottomText: '' } });
   }
 
+  removeMemeFromList = () => {
+    this.props.removeMemeFromList(this.state.currMeme.id);
+    this.props.renderMemeList();
+  }
+
   render = () => <div className="meme-card">
 
     <div className="meme-header">
-      <h1>Add New Meme</h1>
-      <h3>Meme Pool #{this.state.currMeme.id}: {this.state.currMeme.name}</h3>
+      <h1>Edit View Meme</h1>
+      <h3>Meme List #{this.state.currMeme.id}: {this.state.currMeme.name}</h3>
     </div>
 
     <div className="image-div">
@@ -66,13 +71,15 @@ class AddNewMeme extends Component {
       </form>
     </div>
 
+
     <div className="refresh-btn-div">
-      <button className="refresh-btn" onClick={this.prevMemePool}>Prev Meme in Pool</button>&nbsp;&nbsp;&nbsp;
-      <button className="refresh-btn" onClick={this.nextMemePool}>Next Meme in Pool</button>
+      <button className="refresh-btn" onClick={this.prevmemeList}>Prev Meme in Pool</button>&nbsp;&nbsp;&nbsp;
+      <button className="refresh-btn" onClick={this.nextmemeList}>Next Meme in Pool</button>
     </div>
 
     <div className="submit-btn-div">
-      <button className="submit-btn" onClick={this.addMemeToList}>Add To List as New Meme</button>
+      <button className="submit-btn" onClick={() => this.props.updateListMeme(this.state.currMeme)}>Update This Meme</button>&nbsp;&nbsp;&nbsp;
+      <button className="submit-btn" onClick={this.removeMemeFromList}>Remove This Meme</button>&nbsp;&nbsp;&nbsp;
     </div>
 
     <div className="cancel-btn-div">
@@ -83,4 +90,4 @@ class AddNewMeme extends Component {
 
 }
 
-export default AddNewMeme;
+export default EditViewMeme;

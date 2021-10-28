@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import "./ThumbNail.css";
 
-// import ReactDOM from 'react-dom';
-
 class ThumbNail extends Component {
   render(props) {
     return (
       <div className="meme-thumbnail">
-        
+
         <div className="thumbnail-header">
-          <h1>
-            {this.props.memeObj.name} / {this.props.memeObj.id}
-          </h1>
+          <h3>{this.props.memeObj.name} / {this.props.memeObj.id}</h3>
         </div>
+
         <div className="thumbnail-image-div">
           <img
             className="thumbnail-image"
@@ -23,13 +20,13 @@ class ThumbNail extends Component {
 
         <div className="thumbnail-text-display">
           <div className="top-text">
-            <h2>top text</h2>
+            <p>Top Text: {this.props.memeObj.topText}</p>
           </div>
 
-          <br/>
+          <br />
 
           <div className="bottom-text">
-            <h2>bottom text</h2>
+            <p>Bottom Text: {this.props.memeObj.bottomText}</p>
           </div>
         </div>
 
@@ -42,18 +39,16 @@ class ThumbNail extends Component {
           </button>
         </div>
 
+
         <div className="edit-btn-div">
-          <button
-            className="edit-btn"
-            onClick={() => this.props.handleSubmitClick(this.props.id)}
-          >
-            <span>Edit</span>
+          <button className="edit-btn" onClick={() => this.props.renderEditViewMeme(this.props.memeObj)}>
+            <span>View / Edit Meme</span>
           </button>
         </div>
 
         <div className="delete-btn-div">
-          <button className="delete-btn" onClick={this.props.handleCancelClick}>
-            <span>Delete</span>
+          <button className="delete-btn" onClick={() => this.props.removeMemeFromList(this.props.memeObj.id)}>
+            <span>Remove Meme From List</span>
           </button>
         </div>
       </div>
