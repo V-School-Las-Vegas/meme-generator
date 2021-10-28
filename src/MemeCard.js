@@ -28,6 +28,7 @@ class MemeCard extends Component {
               value={this.props.memeObj.topText}
               onChange={(event) => this.props.handleChange(this.props.id, event)}
             />
+            <br/>
             <input
               type="text"
               name="bottomText"

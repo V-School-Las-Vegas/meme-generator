@@ -44,6 +44,7 @@ class AddNewMeme extends Component {
                         value={this.props.memes[this.state.currMemeNdx].topText}
                         onChange={(event) => this.props.handleChange(this.state.currMemeNdx, event)}
                     />
+                    <br/>
                     <input type="text"
                         name="bottomText"
                         placeholder="Bottom text"
