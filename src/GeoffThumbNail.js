@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./MemeCard.css";
 
 class GeoffThumbNail extends Component {
   render = () => <div>
@@ -7,7 +6,8 @@ class GeoffThumbNail extends Component {
     <h3>{this.props.memeObj.name} / {this.props.memeObj.id}</h3>
     <p>Top Text: {this.props.memeObj.topText}</p>
     <p>Bottom Text: {this.props.memeObj.bottomText}</p>
-    <button onClick={() => this.props.handlePreviewClick(this.props.memeObj)}>Preview Meme</button>
+    <button onClick={() => this.props.renderEditViewMeme(this.props.memeObj)}>View / Edit Meme</button>&nbsp;&nbsp;&nbsp;
+    <button onClick={() => this.props.removeMemeFromList(this.props.memeObj.id)}>Remove Meme From List</button>
   </div>
 }
 
