@@ -31,40 +31,35 @@ class AddNewMeme extends Component {
     this.setState({ currMeme: { ...this.state.currMeme, topText: '', bottomText: '' } });
   }
 
-  render = () => <div className="meme-card">
+  render = () => <div className="add-meme-card">
 
     <div className="meme-header">
       <h1>Add New Meme</h1>
       <h3>Meme Pool #{this.state.currMeme.id}: {this.state.currMeme.name}</h3>
     </div>
 
-    <div className="image-div">
-      <img
-        className="image"
-        src={this.state.currMeme.url}
-        alt={this.state.currMeme.name}
-      />
+    <div className="image-add-div">
+      <input  className="top-text-add"
+            type="text"
+            name="topText"
+            placeholder="Top text"
+            value={this.state.currMeme.topText}
+            onChange={event => this.handleChange(event)}
+          />
+        <img
+          className="image-add"
+          src={this.state.currMeme.url}
+          alt={this.state.currMeme.name}
+        />
+                <input className="bottom-text-add"
+            type="text"
+            name="bottomText"
+            placeholder="Bottom text"
+            value={this.state.currMeme.bottomText}
+            onChange={event => this.handleChange(event)}
+          />
     </div>
 
-    <div className="text-form">
-      <form>
-        <input
-          type="text"
-          name="topText"
-          placeholder="Top text"
-          value={this.state.currMeme.topText}
-          onChange={event => this.handleChange(event)}
-        />
-        <br />
-        <input
-          type="text"
-          name="bottomText"
-          placeholder="Bottom text"
-          value={this.state.currMeme.bottomText}
-          onChange={event => this.handleChange(event)}
-        />
-      </form>
-    </div>
 
     <div className="refresh-btn-div">
       <button className="refresh-btn" onClick={this.prevMemePool}>Prev Meme in Pool</button>&nbsp;&nbsp;&nbsp;

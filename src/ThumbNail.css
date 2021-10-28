@@ -3,7 +3,7 @@
   width: 70%;
   border-style: solid;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr) 2fr 1fr 1fr 1fr 1fr;
   grid-template-rows:repeat(3, 1fr);
   background-color: rgba(170, 165, 165, 0.685);
   margin-bottom: 15px;
@@ -12,7 +12,7 @@
 .thumbnail-header {
   align-self: start;
   grid-row: 1/2;
-  grid-column: 1/8;
+  grid-column: 1/9;
   border-style: solid;
   width: auto;
   background-color: rgb(191, 196, 191);
@@ -22,37 +22,42 @@
 .thumbnail-image-div {
   grid-row: 2/5;
   border-style: double;
-  width: 100px;
-  height: 110px;
+  width: 125px;
+  height: 125px;
 }
 
 .thumbnail-image {
   align-self: start;
   float: left;
-  width: 100px;
-  height: 110px;
+  width: 125px;
+  height: 125px;
   object-fit: cover;
 }
 
 .thumbnail-text-display {
-  display: flex;
-  flex-wrap: wrap;
-  width: 140px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 360px;
+  height: 125px;
   justify-content: space-around;
   grid-column: 2/3;
   grid-row: 2/5;
-  border-style: hidden;
-  align-self: center;
+  border-style: solid;
+  border-color: rgba(150, 149, 149, 0.61);
+  background-color: rgba(153, 153, 153, 0.548);
+  
 }
 
 .top-text {
-  flex-direction: column;
-  align-self: flex-start;
+  grid-column: 1/5;
+  grid-row: 1/2;
+  left: 15px;
 }
 
 .bottom-text {
-  flex-direction: column;
-  align-self: flex-end;
+  grid-column: 1/5;
+  grid-row: 3/4;
 }
 
 
@@ -64,11 +69,12 @@
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin: 10px;
 }
 
 .delete-btn {
   display: block;
-  width: 150px;
+  width: 170px;
   height: 40px;
   line-height: 40px;
   font-size: 18px;
@@ -106,56 +112,7 @@
   width: 100%;
 }
 
-/* ----------- PREVIEW BUTTON --------------------------------  */
 
-.preview-btn-div {
-  grid-column: 4/5;
-  grid-row: 3/4;
-  position: relative;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.preview-btn {
-  display: block;
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 18px;
-  font-family: sans-serif;
-  text-decoration: none;
-  color: #333;
-  border: 2px solid #333;
-  letter-spacing: 2px;
-  text-align: center;
-  position: relative;
-  transition: all .35s;
-}
-
-.preview-btn span {
-  position: relative;
-  z-index: 2;
-}
-
-.preview-btn:after{
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: #bfd309;
-  transition: all .35s;
-}
-
-.preview-btn:hover{
-  color: rgba(255, 7, 7, 0.575);
-}
-
-.preview-btn:hover:after{
-  width: 100%;
-}
 
 /* ------------------- EDIT BUTTON --------------------------------------------*/
 .edit-btn-div {
@@ -165,11 +122,13 @@
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin: 10px;
+
 }
 
 .edit-btn {
   display: block;
-  width: 150px;
+  width: 170px;
   height: 40px;
   line-height: 40px;
   font-size: 18px;

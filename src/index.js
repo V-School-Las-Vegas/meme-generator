@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import AddNewMeme from './AddNewMeme';
 import EditViewMeme from './EditViewMeme';
-import GeoffThumbNail from './GeoffThumbNail';
 import ThumbNail from './ThumbNail.js';
 
 const axios = require("axios");

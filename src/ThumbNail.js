@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import "./ThumbNail.css";
 
 class ThumbNail extends Component {
-  render(props) {
-    return (
-      <div className="meme-thumbnail">
+  render = () => <div className="meme-thumbnail">
 
         <div className="thumbnail-header">
           <h3>{this.props.memeObj.name} / {this.props.memeObj.id}</h3>
@@ -30,30 +28,18 @@ class ThumbNail extends Component {
           </div>
         </div>
 
-        <div className="preview-btn-div">
-          <button
-            className="preview-btn"
-            onClick={this.props.handleRejectClick}
-          >
-            <span>preview</span>
-          </button>
-        </div>
-
-
         <div className="edit-btn-div">
           <button className="edit-btn" onClick={() => this.props.renderEditViewMeme(this.props.memeObj)}>
-            <span>View / Edit Meme</span>
+            <span>View / Edit</span>
           </button>
         </div>
 
         <div className="delete-btn-div">
           <button className="delete-btn" onClick={() => this.props.removeMemeFromList(this.props.memeObj.id)}>
-            <span>Remove Meme From List</span>
+            <span>Remove Meme</span>
           </button>
         </div>
-      </div>
-    );
-  }
+      </div> 
 }
 
 export default ThumbNail;
