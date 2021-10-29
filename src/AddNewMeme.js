@@ -8,20 +8,30 @@ class AddNewMeme extends Component {
     currMeme: this.props.memePool[0]
   };
 
+  // prevMemePool = () => {
+  //   let nextId = Math.max(this.state.currMemePoolNdx - 1, 0);
+  //   this.setState({
+  //     currMemePoolNdx: nextId,
+  //     currMeme: this.props.memePool[nextId]
+  //   });
+  // }
+
   prevMemePool = () => {
-    let nextId = Math.max(this.state.currMemePoolNdx - 1, 0);
-    this.setState({
-      currMemePoolNdx: nextId,
-      currMeme: this.props.memePool[nextId]
-    });
+    this.setState(prevState => ({ currMemePoolNdx: Math.max(this.state.currMemePoolNdx - 1, 0) }));
+    this.setState(prevState => ({ currMeme: this.props.memePool[prevState.currMemePoolNdx] }));
   }
 
+  // nextMemePool = () => {
+  //   let nextId = Math.min(this.state.currMemePoolNdx + 1, this.props.memePool.length - 1);
+  //   this.setState({
+  //     currMemePoolNdx: nextId,
+  //     currMeme: this.props.memePool[nextId]
+  //   });
+  // }
+
   nextMemePool = () => {
-    let nextId = Math.min(this.state.currMemePoolNdx + 1, this.props.memePool.length - 1);
-    this.setState({
-      currMemePoolNdx: nextId,
-      currMeme: this.props.memePool[nextId]
-    });
+    this.setState(prevState => ({ currMemePoolNdx: Math.min(this.state.currMemePoolNdx + 1, this.props.memePool.length - 1) }));
+    this.setState(prevState => ({ currMeme: this.props.memePool[prevState.currMemePoolNdx] }));
   }
 
   handleChange = ({ target: { name, value } }) => this.setState({ currMeme: { ...this.state.currMeme, [name]: value } });
@@ -39,25 +49,25 @@ class AddNewMeme extends Component {
     </div>
 
     <div className="image-add-div">
-      <input  className="top-text-add"
-            type="text"
-            name="topText"
-            placeholder="Top text"
-            value={this.state.currMeme.topText}
-            onChange={event => this.handleChange(event)}
-          />
-        <img
-          className="image-add"
-          src={this.state.currMeme.url}
-          alt={this.state.currMeme.name}
-        />
-                <input className="bottom-text-add"
-            type="text"
-            name="bottomText"
-            placeholder="Bottom text"
-            value={this.state.currMeme.bottomText}
-            onChange={event => this.handleChange(event)}
-          />
+      <input className="top-text-add"
+        type="text"
+        name="topText"
+        placeholder="Top text"
+        value={this.state.currMeme.topText}
+        onChange={event => this.handleChange(event)}
+      />
+      <img
+        className="image-add"
+        src={this.state.currMeme.url}
+        alt={this.state.currMeme.name}
+      />
+      <input className="bottom-text-add"
+        type="text"
+        name="bottomText"
+        placeholder="Bottom text"
+        value={this.state.currMeme.bottomText}
+        onChange={event => this.handleChange(event)}
+      />
     </div>
 
 

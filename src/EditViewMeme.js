@@ -4,24 +4,34 @@ import "./EditViewMeme.css";
 class EditViewMeme extends Component {
 
   state = {
-    currmemeListNdx: this.props.initMemeListId,
+    currMemeListNdx: this.props.initMemeListId,
     currMeme: this.props.memeList[this.props.initMemeListId]
   };
 
-  nextmemeList = () => {
-    let nextId = Math.min(this.state.currmemeListNdx + 1, this.props.memeList.length - 1);
-    this.setState({
-      currmemeListNdx: nextId,
-      currMeme: this.props.memeList[nextId]
-    });
-  }
+  // prevmemeList = () => {
+  //   let nextId = Math.max(this.state.currMemeListNdx - 1, 0);
+  //   this.setState({
+  //     currMemeListNdx: nextId,
+  //     currMeme: this.props.memeList[nextId]
+  //   });
+  // }
 
   prevmemeList = () => {
-    let nextId = Math.max(this.state.currmemeListNdx - 1, 0);
-    this.setState({
-      currmemeListNdx: nextId,
-      currMeme: this.props.memeList[nextId]
-    });
+    this.setState(prevState => ({ currMemeListNdx: Math.max(this.state.currMemeListNdx - 1, 0) }));
+    this.setState(prevState => ({ currMeme: this.props.memeList[prevState.currMemeListNdx] }));
+  }
+
+  // nextmemeList = () => {
+  //   let nextId = Math.min(this.state.currMemeListNdx + 1, this.props.memeList.length - 1);
+  //   this.setState({
+  //     currMemeListNdx: nextId,
+  //     currMeme: this.props.memeList[nextId]
+  //   });
+  // }
+
+  nextmemeList = () => {
+    this.setState(prevState => ({ currMemeListNdx: Math.min(this.state.currMemeListNdx + 1, this.props.memeList.length - 1) }));
+    this.setState(prevState => ({ currMeme: this.props.memeList[prevState.currMemeListNdx] }));
   }
 
   handleChange = ({ target: { name, value } }) => this.setState({ currMeme: { ...this.state.currMeme, [name]: value } });
@@ -65,8 +75,6 @@ class EditViewMeme extends Component {
           onChange={event => this.handleChange(event)}
         />
     </div>
-
-
 
     <div className="refresh-btn-div">
       <button className="refresh-btn" onClick={this.prevmemeList}>Prev Meme in Pool</button>&nbsp;&nbsp;&nbsp;
